@@ -20,4 +20,4 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 
 ## Current release
 
-**0.1.0:** Core OpenClaw skill instructions, eleven specialist skill definitions, beginner guidance and repository foundations. Runtime agent registration, the persistent catalogue and bidirectional transport are not yet implemented.
+**0.2.0:** Core skill and eleven specialist definitions, plus a read-only bidirectional referral validator, unit tests and a staged development roadmap. Live agent transport, persistent catalogue and automatic agent registration remain unimplemented.
