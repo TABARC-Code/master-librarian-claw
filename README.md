@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.1.0 — foundation and specialist skill instructions.**
+**Current version: 0.2.0 — referral validation and specialist skills.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -31,14 +31,14 @@ These are starting points, not guaranteed runtime requirements. Models and conte
 
 ## Operating model
 
-The librarian keeps classification and audit decisions separate from file-changing operations. Specialist instructions specify bidirectional referrals and bounded loops; the executable router and its tests have not yet been published. Files are inspected read-only unless permission for a specific change has been granted.
+The librarian keeps classification and audit decisions separate from file-changing operations. A read-only Python validator checks bidirectional referral chains, repeated loops and invalid agents. This is not yet a live agent dispatcher. Files are inspected read-only unless permission for a specific change has been granted.
 
 Agent templates do not automatically become running agents. SQLite persistence, live routing and a complete installer are planned work, not working features.
 
 ## Development
 
-Python helpers and their tests are still to be added. When published, run `python3 -m unittest discover -s tests -v`. The project uses British English. Classification relies on evidence; Dewey schedules may require licensing.
+Run `python3 -m unittest discover -s tests -v` to execute the referral unit tests. The tests are published but have not yet been run successfully against a local checkout in this session. The project uses British English. Classification relies on evidence; Dewey schedules may require licensing.
 
-[OpenClaw documentation](https://docs.openclaw.ai/tools/skills) · [Repository description](DESCRIPTION.md) · [Beginner's guide](QUICKSTART.md)
+[Development roadmap](ROADMAP.md) · [OpenClaw documentation](https://docs.openclaw.ai/tools/skills) · [Repository description](DESCRIPTION.md) · [Beginner's guide](QUICKSTART.md)
 
 MIT licence applies to the original project code and documentation when the licence file is present.
