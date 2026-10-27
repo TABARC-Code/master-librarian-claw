@@ -17,3 +17,7 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 ## Suggested repository topics
 
 `openclaw`, `ollama`, `digital-library`, `metadata`, `dewey-decimal`, `rpg`, `wargaming`, `cataloguing`, `local-first`, `python`, `archiving`
+
+## Current release
+
+**0.1.0:** Core OpenClaw skill instructions, eleven specialist skill definitions, beginner guidance and repository foundations. Runtime agent registration, the persistent catalogue and bidirectional transport are not yet implemented.
