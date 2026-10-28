@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.4.0 — initial persistent SQLite catalogue.**
+**Current version: 0.5.0 — read-only collection inventory.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -50,3 +50,9 @@ Run `python3 -m unittest discover -s tests -v` for referral, profile and catalog
 [Development roadmap](ROADMAP.md) · [OpenClaw documentation](https://docs.openclaw.ai/tools/skills) · [Repository description](DESCRIPTION.md) · [Beginner's guide](QUICKSTART.md)
 
 MIT licence applies to the original project code and documentation when the licence file is present.
+
+## Collection inventory (v0.5.0)
+
+Run `python3 scripts/inventory.py ./sample-folder` for a JSON listing, or add `--hash` for SHA-256 digests. Use `--max-files` and `--max-depth` to limit the scan. Symbolic links and special files are skipped. This does not move, rename, delete or update library files. Output currently goes to standard output; it does not yet ingest records into SQLite. Avoid hashing enormous NAS collections until the next stage adds streaming output and resumable checkpoints.
+
+Five inventory tests were run locally against the scanner implementation. The complete repository test suite still needs an independent checkout run.
