@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.3.0 — hardware profiles and referral validation.**
+**Current version: 0.4.0 — initial persistent SQLite catalogue.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -33,6 +33,10 @@ These are starting points, not guaranteed runtime requirements. Models and conte
 
 Run `python3 scripts/profile_setup.py --profile mini` (or `small`, `medium`, `advanced`). Add `--json` for structured output. The inspector prints recommendations without modifying Ollama or OpenClaw. The four profiles keep inference sequential and the service bound to loopback by default. Profile recommendations have not been benchmarked on the target machines.
 
+## Local catalogue (early implementation)
+
+Create an empty metadata database with `python3 scripts/catalogue.py --db ./state/library.sqlite --init`. The command creates an SQLite catalogue, enables foreign keys and WAL, and checks database integrity. It does not scan, rename or delete your library files. The initial schema has works, editions, file instances, authority records, relationships, evidence and audit events; ingestion and migrations beyond schema v1 are still to come.
+
 ## Operating model
 
 The librarian keeps classification and audit decisions separate from file-changing operations. A read-only Python validator checks bidirectional referral chains, repeated loops and invalid agents. This is not yet a live agent dispatcher. Files are inspected read-only unless permission for a specific change has been granted.
@@ -41,7 +45,7 @@ Agent templates do not automatically become running agents. SQLite persistence, 
 
 ## Development
 
-Run `python3 -m unittest discover -s tests -v` to execute the referral unit tests. The tests are published but have not yet been run successfully against a local checkout in this session. The project uses British English. Classification relies on evidence; Dewey schedules may require licensing.
+Run `python3 -m unittest discover -s tests -v` for referral, profile and catalogue checks. Newly published tests still require execution against a clean checkout. The project uses British English. Classification relies on evidence; Dewey schedules may require licensing.
 
 [Development roadmap](ROADMAP.md) · [OpenClaw documentation](https://docs.openclaw.ai/tools/skills) · [Repository description](DESCRIPTION.md) · [Beginner's guide](QUICKSTART.md)
 
