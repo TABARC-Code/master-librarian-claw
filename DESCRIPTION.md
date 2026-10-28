@@ -20,4 +20,4 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 
 ## Current release
 
-**0.2.0:** Core skill and eleven specialist definitions, plus a read-only bidirectional referral validator, unit tests and a staged development roadmap. Live agent transport, persistent catalogue and automatic agent registration remain unimplemented.
+**0.3.0:** Adds four local hardware profiles and a read-only configuration inspector, with profile tests. The 0.2.0 referral validator and eleven specialist skill definitions remain. Runtime integration, persistent SQLite catalogue and independent agent execution remain future work.
