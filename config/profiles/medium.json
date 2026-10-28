@@ -1,0 +1,24 @@
+{
+  "profile_id": "medium",
+  "label": "Desktop / accelerated virtual machine",
+  "min_ram_gb": 16,
+  "preferred_ram_gb": 32,
+  "model": "qwen3:4b",
+  "fallback": "qwen3:1.7b",
+  "context_tokens": 8192,
+  "ollama_parallel": 1,
+  "loaded_models": 1,
+  "agent_workers": 1,
+  "file_workers": 4,
+  "hash_workers": 2,
+  "batch_size": 50,
+  "offline": true,
+  "no_cloud": true,
+  "network_binding": "127.0.0.1",
+  "read_only_default": true,
+  "features": {
+    "agent_dialogue": "bounded_sequential",
+    "embeddings": "optional_local"
+  },
+  "note": "Recommendations, not measured performance. Check runtime memory, GPU visibility and model tool reliability."
+}
