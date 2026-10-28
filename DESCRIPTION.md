@@ -21,3 +21,7 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 ## Current release
 
 **0.4.0:** Adds a local SQLite catalogue schema and integrity-checked initialiser, following the 0.3.0 hardware profiles and 0.2.0 referral validator. Ingestion, robust schema migrations, live agent transport and automatic agent registration remain unimplemented.
+
+## Version 0.5.0
+
+Adds a read-only local inventory command with optional SHA-256 hashing, scan limits, symlink avoidance and basic tests. It does not import scan results into the catalogue or manage files automatically.
