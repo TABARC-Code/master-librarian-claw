@@ -1,0 +1,24 @@
+{
+  "profile_id": "mini",
+  "label": "Raspberry Pi / ARM mini-computer",
+  "min_ram_gb": 4,
+  "preferred_ram_gb": 8,
+  "model": "qwen3:0.6b",
+  "fallback": "qwen3:0.6b",
+  "context_tokens": 2048,
+  "ollama_parallel": 1,
+  "loaded_models": 1,
+  "agent_workers": 1,
+  "file_workers": 1,
+  "hash_workers": 1,
+  "batch_size": 10,
+  "offline": true,
+  "no_cloud": true,
+  "network_binding": "127.0.0.1",
+  "read_only_default": true,
+  "features": {
+    "agent_dialogue": "bounded_sequential",
+    "embeddings": "optional_local"
+  },
+  "note": "Recommendations, not measured performance. Check runtime memory, GPU visibility and model tool reliability."
+}
