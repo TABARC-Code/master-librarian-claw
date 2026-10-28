@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.2.0 — referral validation and specialist skills.**
+**Current version: 0.3.0 — hardware profiles and referral validation.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -28,6 +28,10 @@ The root `SKILL.md` and eleven specialist `SKILL.md` files are present. Installa
 | Advanced | Workstation or server | 32–64 GB+ | `qwen3:8b` |
 
 These are starting points, not guaranteed runtime requirements. Models and context sizes need testing against actual free RAM and usable GPU memory.
+
+## Inspect a local hardware profile
+
+Run `python3 scripts/profile_setup.py --profile mini` (or `small`, `medium`, `advanced`). Add `--json` for structured output. The inspector prints recommendations without modifying Ollama or OpenClaw. The four profiles keep inference sequential and the service bound to loopback by default. Profile recommendations have not been benchmarked on the target machines.
 
 ## Operating model
 
