@@ -17,9 +17,9 @@ Run `python3 -m unittest discover -s tests -v` in a checkout. No live test has y
 - Hardware discovery in advisory mode; never silently change configuration
 - Tests for every profile and unknown profile names
 
-## 0.4.0 — Persistent SQLite catalogue
-- Versioned migrations: works, editions, file instances, authority records, sources and relations
-- Foreign key enforcement and WAL transaction handling
+## 0.4.0 — Persistent SQLite catalogue (initial schema committed)
+- Initial schema for works, editions, file instances, authorities, evidence, relationships and audit events; subsequent migrations remain to be developed
+- Foreign key enforcement, SQLite WAL and integrity verification in the local initialiser
 - Store provenance, uncertainty and change history
 - Backups, restoration test and schema checks
 - No destructive file operations
