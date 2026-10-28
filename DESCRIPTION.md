@@ -20,4 +20,4 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 
 ## Current release
 
-**0.3.0:** Adds four local hardware profiles and a read-only configuration inspector, with profile tests. The 0.2.0 referral validator and eleven specialist skill definitions remain. Runtime integration, persistent SQLite catalogue and independent agent execution remain future work.
+**0.4.0:** Adds a local SQLite catalogue schema and integrity-checked initialiser, following the 0.3.0 hardware profiles and 0.2.0 referral validator. Ingestion, robust schema migrations, live agent transport and automatic agent registration remain unimplemented.
