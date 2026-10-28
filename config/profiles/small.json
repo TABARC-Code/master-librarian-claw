@@ -1,0 +1,24 @@
+{
+  "profile_id": "small",
+  "label": "NUC / low-power mini PC",
+  "min_ram_gb": 8,
+  "preferred_ram_gb": 16,
+  "model": "qwen3:1.7b",
+  "fallback": "qwen3:0.6b",
+  "context_tokens": 4096,
+  "ollama_parallel": 1,
+  "loaded_models": 1,
+  "agent_workers": 1,
+  "file_workers": 2,
+  "hash_workers": 1,
+  "batch_size": 20,
+  "offline": true,
+  "no_cloud": true,
+  "network_binding": "127.0.0.1",
+  "read_only_default": true,
+  "features": {
+    "agent_dialogue": "bounded_sequential",
+    "embeddings": "optional_local"
+  },
+  "note": "Recommendations, not measured performance. Check runtime memory, GPU visibility and model tool reliability."
+}
