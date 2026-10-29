@@ -77,3 +77,11 @@ Every substantive development stage should update `VERSION`, `README.md`, `DESCR
 - Fixed the referral hop-limit test expectation.
 - Confirmed the corrected revision's unit tests on Python 3.10, 3.12 and 3.13 in GitHub Actions.
 - Remaining audit targets: concurrency, complete migration rollback tests, directory race hardening, performance and actual OpenClaw integration.
+
+## 0.8.3 — Reliability testing
+
+- Tested concurrent insertion of 80 tasks and competing claims on one task.
+- Tested failed inventory import rollback and failed schema migration rollback.
+- Confirmed referral state persists between connections and unsupported database versions are rejected.
+- GitHub Actions passed unit-test steps on Python 3.10, 3.12 and 3.13 for the test commit.
+- Still pending: process-crash recovery, SQLite backup/restore, hostile filesystem races, large collection benchmarks and end-to-end OpenClaw/Ollama tests.
