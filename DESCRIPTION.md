@@ -29,3 +29,7 @@ Adds a read-only local inventory command with optional SHA-256 hashing, scan lim
 ## Version 0.6.0
 
 Introduces persistent SQLite task states, bidirectional referrals, specialist replies, loop and hop controls, review gates and event history. Local CLI commands only: no autonomous dispatcher, remote services or file-changing actions.
+
+## Version 0.7.0
+
+Adds a read-only setup diagnostic command, four-profile inspection and accompanying unit tests. Guided instructions are updated, but automated dependency installation and live service integration are not yet available.
