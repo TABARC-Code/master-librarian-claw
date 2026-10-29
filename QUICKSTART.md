@@ -89,3 +89,17 @@ Copy a few non-sensitive test files into a separate directory. Do not give tools
 ## What's still being built?
 
 The repository now has a basic SQLite catalogue and manual coordination CLI. Agent auto-registration, live Ollama/OpenClaw dispatch, collection ingestion and safe migration execution remain unfinished. A schema is not a database; a playbook is not a running agent. The README will distinguish finished features from planned ones.
+
+## 8. Try catalogue ingestion
+
+Make a separate test directory and add a few files. From the project root, run:
+
+```sh
+mkdir -p state
+python3 scripts/catalogue.py --db state/library.sqlite --init
+python3 scripts/inventory.py ./your-test-folder > state/inventory.json
+python3 scripts/ingest.py --db state/library.sqlite import state/inventory.json
+python3 scripts/ingest.py --db state/library.sqlite search "pdf"
+```
+
+These steps record file paths and sizes in a local SQLite catalogue. They do not change your documents. The `examples/sample_inventory.json` file shows representative metadata, not actual media or rulebooks. Review classifications using `scripts/classification_review.py` rather than accepting guessed subject labels.
