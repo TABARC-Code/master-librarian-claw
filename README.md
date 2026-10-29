@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.8.0 — inventory ingestion, metadata search and classification proposals.**
+**Current version: 0.8.1 — catalogue and scanner hardening.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -96,3 +96,9 @@ python3 scripts/classification_review.py --db ./state/library.sqlite propose FIL
 ```
 
 The example inventory under `examples/` is illustrative metadata and not a real collection. All classifications remain provisional; the system does not yet approve or reconcile them automatically. Imports change the **local SQLite database**, never source documents. Only complete inventory reports are accepted. Reimports update file observations but do not delete missing records. Search currently matches file paths, not document contents. The full suite still needs a verified clean-checkout run.
+
+## Audit fixes (v0.8.1)
+
+Fixed reopening schema-v2 catalogues through the v1/v2-aware catalogue inspector. Import rejects negative sizes and additional unsafe inventory paths. Repeat imports without hashes now preserve recorded SHA-256 values. Hashing opens files with no-follow protection where supported and compares file identity and metadata around reading. These improvements reduce, but do not eliminate, time-of-check/time-of-use risks on mutable directory trees. The scanner still needs directory-descriptor-based traversal for stronger hostile-tree protection.
+
+A Python compilation and unit-test workflow has been added for pull requests and pushes. Its first run has not been observed; a green CI result is **not** claimed. OpenClaw/Ollama runtime integration and end-to-end NAS testing remain unverified.
