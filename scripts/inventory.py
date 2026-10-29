@@ -38,11 +38,20 @@ def inspect_tree(root, hash_files=False, max_files=100000, max_depth=32):
                 item = {"path": str(Path(entry.path).relative_to(root)), "size": info.st_size, "modified_ns": info.st_mtime_ns}
                 if hash_files:
                     digest = hashlib.sha256()
-                    with open(entry.path, "rb") as stream:
+                    flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
+                    if hasattr(os, "O_NOFOLLOW"):
+                        flags |= os.O_NOFOLLOW
+                    fd = os.open(entry.path, flags)
+                    with os.fdopen(fd, "rb") as stream:
+                        opened = os.fstat(stream.fileno())
+                        if (not stat.S_ISREG(opened.st_mode) or
+                            (opened.st_dev, opened.st_ino) != (info.st_dev, info.st_ino)):
+                            issues.append({"path": entry.path, "error": "changed_during_open"})
+                            continue
                         for block in iter(lambda: stream.read(1048576), b""):
                             digest.update(block)
-                    after = entry.stat(follow_symlinks=False)
-                    if (after.st_size, after.st_mtime_ns) != (info.st_size, info.st_mtime_ns):
+                        after = os.fstat(stream.fileno())
+                    if (after.st_size, after.st_mtime_ns, after.st_ino) != (info.st_size, info.st_mtime_ns, info.st_ino):
                         issues.append({"path": entry.path, "error": "changed_during_hash"})
                     else:
                         item["sha256"] = digest.hexdigest()
