@@ -23,12 +23,14 @@ def ingest(db_path, inventory_path):
     count=0
     with connect(db_path) as db:
         for item in data["files"]:
-            if not isinstance(item,dict) or not isinstance(item.get("path"),str) or not isinstance(item.get("size"),int):
+            if not isinstance(item,dict) or not isinstance(item.get("path"),str) or type(item.get("size")) is not int or item["size"] < 0:
                 raise ValueError("Invalid inventory item")
             relative=Path(item["path"])
-            if relative.is_absolute() or ".." in relative.parts or not relative.parts:
+            if relative.is_absolute() or ".." in relative.parts or "." in relative.parts or not relative.parts or "\\" in item["path"] or "\x00" in item["path"] or any(part in ("", ".") for part in item["path"].split("/")):
                 raise ValueError("Unsafe inventory path")
             path=str(root/relative)
+            if not (Path(path).parent == root or root in Path(path).parents):
+                raise ValueError("Inventory path outside root")
             digest=item.get("sha256")
             if digest is not None and (not isinstance(digest,str) or len(digest)!=64 or any(c not in "0123456789abcdef" for c in digest)):
                 raise ValueError("Invalid SHA-256")
