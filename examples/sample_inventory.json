@@ -1,0 +1,23 @@
+{
+  "root": "/replace/with/your/test/folder",
+  "files": [
+    {
+      "path": "Books/History of Medieval Fortifications.pdf",
+      "size": 4200
+    },
+    {
+      "path": "RPGs/Example Fantasy Game/Second Edition/Core Rules.pdf",
+      "size": 6700
+    },
+    {
+      "path": "Wargames/Example Skirmish Rules/Quick Start.pdf",
+      "size": 2800
+    },
+    {
+      "path": "Media/Example Documentary.mp4",
+      "size": 15000
+    }
+  ],
+  "issues": [],
+  "truncated": false
+}
