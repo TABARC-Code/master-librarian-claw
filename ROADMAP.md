@@ -62,3 +62,11 @@ Run `python3 -m unittest discover -s tests -v` in a checkout. No live test has y
 ## Release discipline
 
 Every substantive development stage should update `VERSION`, `README.md`, `DESCRIPTION.md` and relevant tests together. Separate commits must reflect real work. No fabricated activity, timestamps or release claims.
+
+## 0.8.1 — Security and reliability audit
+
+- Corrected catalogue version checks after schema-v2 migration
+- Tightened import validation and preserved existing hashes when observations lack a digest
+- Added no-follow safeguards for opening files during hashing (where supported)
+- Added regression tests and Python CI configuration
+- Outstanding: test the full suite in CI, improve hostile-directory traversal, strengthen concurrent task authorisation, add backup/migration failure simulations and validate installation commands
