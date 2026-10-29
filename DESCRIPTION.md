@@ -45,3 +45,7 @@ A maintenance release covering SQLite schema-v2 reopening, inventory path and si
 ## Version 0.8.2
 
 Fixes the SQLite v1→v2 upgrade regression found by GitHub Actions and corrects a faulty referral-test expectation. Python 3.10, 3.12 and 3.13 unit-test steps passed for the corrected source revision.
+
+## Version 0.8.3
+
+Adds six reliability regression tests for concurrent SQLite task handling, claim contention, rollback behaviour, persisted referrals and incompatible database versions. This is a test-focused release, not an autonomous-agent or file-modification milestone.
