@@ -30,9 +30,9 @@ Run `python3 -m unittest discover -s tests -v` in a checkout. No live test has y
 - Resume and cancellation; no unrestricted network-share scanning
 - Test with mixed books, games, media and creative asset fixtures
 
-## 0.6.0 — Coordinated queue
-- Persistent referrals and agent responses with bounded work
-- Transactional claims, retry policy, cancellation and loop detection
+## 0.6.0 — Coordinated queue (initial implementation)
+- Persistent referral records and responses; live worker claiming and retries remain to be implemented
+- Transactional manual claiming, status transitions, cancellation and repeated-referral detection; automatic retry is not implemented
 - Single writer for catalogue publication, independent audit review
 - CPU-only sequential dispatcher first; local Ollama optional
 
