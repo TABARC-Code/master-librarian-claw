@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.5.0 — read-only collection inventory.**
+**Current version: 0.6.0 — persistent local task coordination.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -56,3 +56,19 @@ MIT licence applies to the original project code and documentation when the lice
 Run `python3 scripts/inventory.py ./sample-folder` for a JSON listing, or add `--hash` for SHA-256 digests. Use `--max-files` and `--max-depth` to limit the scan. Symbolic links and special files are skipped. This does not move, rename, delete or update library files. Output currently goes to standard output; it does not yet ingest records into SQLite. Avoid hashing enormous NAS collections until the next stage adds streaming output and resumable checkpoints.
 
 Five inventory tests were run locally against the scanner implementation. The complete repository test suite still needs an independent checkout run.
+
+## Persistent specialist referrals (v0.6.0)
+
+Once you have initialised your local catalogue, upgrade the schema:
+
+```sh
+python3 scripts/catalogue.py --db ./state/library.sqlite --init
+python3 scripts/coordination.py --db ./state/library.sqlite migrate
+python3 scripts/coordination.py --db ./state/library.sqlite create "Identify a game supplement"
+```
+
+The final command prints a task ID. Use that ID in subsequent `claim`, `refer`, `respond`, `finish` and `show` commands. For example, `claim TASK_ID master-librarian`, then `refer TASK_ID master-librarian gaming-curator "Which edition?"`. A specialist must answer a pending question before forwarding another. Completion requires a Master Librarian review state. Events and responses persist in SQLite.
+
+The coordinator is a local, explicit command-line task engine, **not** an autonomous OpenClaw dispatcher or a running background service. It neither invokes Ollama nor modifies library files. Schema upgrade changes the catalogue database: back it up first if you have valuable records.
+
+Run `python3 -m unittest discover -s tests -v` to check the repository. The coordinator logic passed a separate seven-test local prototype; tests against this exact published revision and the full prior schema still require a complete checkout run.
