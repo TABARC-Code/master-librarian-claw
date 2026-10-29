@@ -5,7 +5,7 @@ import sqlite3
 from pathlib import Path
 
 SCHEMA = Path(__file__).resolve().parents[1] / "catalogue" / "schema_v1.sql"
-VERSION = 1
+VERSION = 2
 
 def connect(path):
     connection = sqlite3.connect(str(path))
@@ -22,10 +22,12 @@ def initialise(path):
         if version > VERSION:
             raise RuntimeError("Catalogue created by a newer version; refusing downgrade")
         if version == 0:
-            # executescript commits an open transaction; schema contains no file operations.
+            # Only initialise an entirely new database; migrations are separate.
             db.executescript(SCHEMA.read_text(encoding="utf-8"))
             db.execute("INSERT OR IGNORE INTO schema_version(version) VALUES (?)", (VERSION,))
             db.execute("PRAGMA user_version=1")
+        if version not in (0, 1, 2):
+            raise RuntimeError("Unsupported catalogue version")
         results = db.execute("PRAGMA integrity_check").fetchone()
         if results[0] != "ok":
             raise RuntimeError("SQLite integrity check failed: " + str(results[0]))
