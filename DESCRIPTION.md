@@ -33,3 +33,7 @@ Introduces persistent SQLite task states, bidirectional referrals, specialist re
 ## Version 0.7.0
 
 Adds a read-only setup diagnostic command, four-profile inspection and accompanying unit tests. Guided instructions are updated, but automated dependency installation and live service integration are not yet available.
+
+## Version 0.8.0
+
+Connects the read-only inventory report to SQLite, adds path-based catalogue search, and records provisional classifications with source references. Includes sample book, RPG, wargame and media inventory entries. No file reorganisation, full-text search or automatic classification approval.
