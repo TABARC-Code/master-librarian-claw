@@ -36,8 +36,8 @@ Run `python3 -m unittest discover -s tests -v` in a checkout. No live test has y
 - Single writer for catalogue publication, independent audit review
 - CPU-only sequential dispatcher first; local Ollama optional
 
-## 0.7.0 — Guided setup
-- Detect host operating system, Python, Ollama and OpenClaw availability
+## 0.7.0 — Guided setup (diagnostics implemented)
+- Read-only detection of operating system, Python, SQLite and presence of Ollama/OpenClaw executables; complete installation checking remains open
 - Explain missing prerequisites clearly
 - Local-only privacy settings and explicit folder allowlist
 - Begin with a demo library and dry-run mode
