@@ -36,3 +36,19 @@ class IngestTests(unittest.TestCase):
         self.write([{"path":"Rules/100% Complete.pdf","size":1},{"path":"Rules/100x Complete.pdf","size":2}])
         ing.ingest(self.db,self.inv)
         self.assertEqual(len(ing.search(self.db,"100%")),1)
+
+    def test_reject_negative_size(self):
+        self.write([{"path":"Book.pdf","size":-1}])
+        with self.assertRaises(ValueError):ing.ingest(self.db,self.inv)
+
+    def test_reject_windows_traversal(self):
+        self.write([{"path":"..\\private.txt","size":5}])
+        with self.assertRaises(ValueError):ing.ingest(self.db,self.inv)
+
+    def test_preserve_hash_when_rescanned_without_hash(self):
+        digest="a"*64
+        self.write([{"path":"Book.pdf","size":10,"sha256":digest}])
+        ing.ingest(self.db,self.inv)
+        self.write([{"path":"Book.pdf","size":10}])
+        ing.ingest(self.db,self.inv)
+        self.assertEqual(ing.search(self.db,"Book.pdf")[0]["sha256"],digest)
