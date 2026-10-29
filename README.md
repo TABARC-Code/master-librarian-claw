@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.8.1 — catalogue and scanner hardening.**
+**Current version: 0.8.2 — verified migration and test fixes.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -102,3 +102,7 @@ The example inventory under `examples/` is illustrative metadata and not a real 
 Fixed reopening schema-v2 catalogues through the v1/v2-aware catalogue inspector. Import rejects negative sizes and additional unsafe inventory paths. Repeat imports without hashes now preserve recorded SHA-256 values. Hashing opens files with no-follow protection where supported and compares file identity and metadata around reading. These improvements reduce, but do not eliminate, time-of-check/time-of-use risks on mutable directory trees. The scanner still needs directory-descriptor-based traversal for stronger hostile-tree protection.
 
 A Python compilation and unit-test workflow has been added for pull requests and pushes. Its first run has not been observed; a green CI result is **not** claimed. OpenClaw/Ollama runtime integration and end-to-end NAS testing remain unverified.
+
+## Patch release 0.8.2
+
+Corrected the initial schema-history record to version 1 so the SQLite v1→v2 upgrade does not collide with an incorrectly inserted version 2. Corrected the hop-limit test's expected error message. GitHub Actions unit tests now pass on Python 3.10, 3.12 and 3.13 for the corrected source revision. These checks cover the automated suite, not live Ollama/OpenClaw installation, NAS stress tests or an adversarial filesystem security audit.
