@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.8.2 — verified migration and test fixes.**
+**Current version: 0.8.3 — reliability stress and recovery tests.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -106,3 +106,9 @@ A Python compilation and unit-test workflow has been added for pull requests and
 ## Patch release 0.8.2
 
 Corrected the initial schema-history record to version 1 so the SQLite v1→v2 upgrade does not collide with an incorrectly inserted version 2. Corrected the hop-limit test's expected error message. GitHub Actions unit tests now pass on Python 3.10, 3.12 and 3.13 for the corrected source revision. These checks cover the automated suite, not live Ollama/OpenClaw installation, NAS stress tests or an adversarial filesystem security audit.
+
+## Reliability checks (v0.8.3)
+
+Added `tests/test_reliability.py` with six tests checking concurrent task creation, conflicting claims on one task, transaction rollback after an invalid inventory item, schema-v2 migration failure recovery, persisted referral responses and rejection of unsupported database versions. The new suite exercises isolated temporary SQLite databases; it does not inspect or change library contents. GitHub Actions reported successful unit-test steps on Python 3.10, 3.12 and 3.13 for the tested source commit.
+
+**Remaining limits:** concurrency on network-mounted databases, hard power loss during writes, rapidly changing directory trees, very large collections and actual Ollama/OpenClaw coordination have not been validated. SQLite catalogues should remain on a local filesystem rather than an unverified shared network mount.
