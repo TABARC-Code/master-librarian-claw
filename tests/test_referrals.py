@@ -39,7 +39,7 @@ class ReferralTests(unittest.TestCase):
             ]))
 
     def test_hop_limit(self):
-        with self.assertRaisesRegex(route.ReferralError, "hop limit"):
+        with self.assertRaisesRegex(route.ReferralError, "positive integer"):
             route.validate_route(self.case([
                 {"from": "gaming-curator", "to": "dewey-classifier", "question": "Subject?"}
             ]), max_hops=0)
