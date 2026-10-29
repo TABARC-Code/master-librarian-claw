@@ -24,7 +24,7 @@ def initialise(path):
         if version == 0:
             # Only initialise an entirely new database; migrations are separate.
             db.executescript(SCHEMA.read_text(encoding="utf-8"))
-            db.execute("INSERT OR IGNORE INTO schema_version(version) VALUES (?)", (VERSION,))
+            db.execute("INSERT OR IGNORE INTO schema_version(version) VALUES (1)")
             db.execute("PRAGMA user_version=1")
         if version not in (0, 1, 2):
             raise RuntimeError("Unsupported catalogue version")
