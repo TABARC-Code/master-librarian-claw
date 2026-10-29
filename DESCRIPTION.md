@@ -41,3 +41,7 @@ Connects the read-only inventory report to SQLite, adds path-based catalogue sea
 ## Version 0.8.1
 
 A maintenance release covering SQLite schema-v2 reopening, inventory path and size validation, hash preservation across subsequent scans, safer hash file opening and additional regression tests. Adds a Python CI workflow. Live integration is still incomplete; no collection files are modified.
+
+## Version 0.8.2
+
+Fixes the SQLite v1→v2 upgrade regression found by GitHub Actions and corrects a faulty referral-test expectation. Python 3.10, 3.12 and 3.13 unit-test steps passed for the corrected source revision.
