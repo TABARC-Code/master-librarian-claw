@@ -37,7 +37,7 @@ def ingest(db_path, inventory_path):
             identifier=str(uuid5(NAMESPACE_URL,path))
             db.execute("""INSERT INTO file_instances(id,edition_id,path,size_bytes,sha256)
               VALUES(?,NULL,?,?,?)
-              ON CONFLICT(path) DO UPDATE SET size_bytes=excluded.size_bytes,sha256=excluded.sha256,
+              ON CONFLICT(path) DO UPDATE SET size_bytes=excluded.size_bytes,sha256=COALESCE(excluded.sha256,file_instances.sha256),
                   observed_at=CURRENT_TIMESTAMP""",(identifier,path,item["size"],digest))
             count+=1
         db.execute("INSERT INTO audit_events(action,details_json) VALUES(?,?)",
