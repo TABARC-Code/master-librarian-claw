@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.6.0 — persistent local task coordination.**
+**Current version: 0.7.0 — local setup diagnostics and guided onboarding.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -72,3 +72,7 @@ The final command prints a task ID. Use that ID in subsequent `claim`, `refer`, 
 The coordinator is a local, explicit command-line task engine, **not** an autonomous OpenClaw dispatcher or a running background service. It neither invokes Ollama nor modifies library files. Schema upgrade changes the catalogue database: back it up first if you have valuable records.
 
 Run `python3 -m unittest discover -s tests -v` to check the repository. The coordinator logic passed a separate seven-test local prototype; tests against this exact published revision and the full prior schema still require a complete checkout run.
+
+## Local setup diagnostics (v0.7.0)
+
+Run `python3 scripts/setup_doctor.py --profile small` and select `mini`, `small`, `medium` or `advanced` as needed. The command checks operating-system details, Python, SQLite, and whether Git, Ollama and OpenClaw are on your command path. It does **not** install dependencies, test model inference, modify settings or start any services. See `QUICKSTART.md` for first-run guidance. The setup doctor passed three local unit tests; there has not yet been an end-to-end installation test with OpenClaw.
