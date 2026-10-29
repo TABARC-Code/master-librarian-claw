@@ -32,7 +32,7 @@ On Windows, try `py -3 --version` if `python3` is not recognised.
 - **Medium:** desktop or virtual machine, 16–32 GB. Stronger everyday model.
 - **Advanced:** workstation/server, 32–64 GB or more. More involved analysis, subject to GPU limits.
 
-Once scripts have been added, inspect a recommendation with:
+Inspect a recommendation with:
 
 ```sh
 python3 scripts/profile_setup.py --profile medium
@@ -55,7 +55,7 @@ The 1.7B model is a starting point for smaller hardware; medium installations ma
 
 Use the official steps for your operating system at https://docs.openclaw.ai/start/getting-started. During onboarding, configure the local model provider.
 
-Install this repository as a skill only **after the root `SKILL.md` has been published**:
+The root `SKILL.md` is present. For installation, check your installed OpenClaw version's skill commands and supported source types first:
 
 ```sh
 openclaw skills install . --as master-librarian
@@ -68,12 +68,12 @@ OpenClaw also supports `openclaw skills install git:TABARC-Code/master-librarian
 
 ## 6. Check the scripts
 
-Once the scripts and tests have been published:
+Run the published tests and inspect a safe sample directory:
 
 ```sh
 python3 -m unittest discover -s tests -v
-python3 scripts/route_case.py examples/handoffs.json
-python3 scripts/inventory.py ./examples
+python3 scripts/setup_doctor.py --profile small
+python3 scripts/inventory.py ./your-test-folder
 ```
 
 The inventory helper is read-only. Hashing large media collections can take time.
@@ -82,6 +82,10 @@ The inventory helper is read-only. Hashing large media collections can take time
 
 Ask the librarian to inspect a small collection without changing it. Review its findings, proposed categories, uncertain editions and duplicate candidates. Never start by giving unrestricted write access to your complete NAS.
 
+## Before trying anything on a real collection
+
+Copy a few non-sensitive test files into a separate directory. Do not give tools unrestricted access to your original documents or NAS. The setup doctor only reports available commands; it does not prove that OpenClaw supports the installation command in this guide. Consult the installed version's help output if the syntax differs.
+
 ## What's still being built?
 
-The instruction system and read-only tools precede the production SQLite catalogue, continuous message queue, automatic agent registration and migration engine. A schema is not a database; a playbook is not a running agent. The README will distinguish finished features from planned ones.
+The repository now has a basic SQLite catalogue and manual coordination CLI. Agent auto-registration, live Ollama/OpenClaw dispatch, collection ingestion and safe migration execution remain unfinished. A schema is not a database; a playbook is not a running agent. The README will distinguish finished features from planned ones.
