@@ -25,3 +25,7 @@ Default policy: read-only. Classification may be clever; deleting somebody's cam
 ## Version 0.5.0
 
 Adds a read-only local inventory command with optional SHA-256 hashing, scan limits, symlink avoidance and basic tests. It does not import scan results into the catalogue or manage files automatically.
+
+## Version 0.6.0
+
+Introduces persistent SQLite task states, bidirectional referrals, specialist replies, loop and hop controls, review gates and event history. Local CLI commands only: no autonomous dispatcher, remote services or file-changing actions.
