@@ -43,9 +43,9 @@ Run `python3 -m unittest discover -s tests -v` in a checkout. No live test has y
 - Begin with a demo library and dry-run mode
 - Avoid promising a universal one-command OpenClaw install without verified platform support
 
-## 0.8.0 — Practical catalogue use
-- Ingest read-only evidence, propose subject/edition classifications, inspect unresolved conflicts
-- Export CSV/JSON, text search and diagnostic reports
+## 0.8.0 — Practical catalogue use (first workflows committed)
+- Ingest scanner inventories and propose provisional classification evidence; edition matching and conflict reconciliation remain pending
+- JSON output and simple path search; full-text search and CSV export remain pending
 - Curated gaming/media/bibliographic samples to assess accuracy
 
 ## 0.9.0 — Migration planning
