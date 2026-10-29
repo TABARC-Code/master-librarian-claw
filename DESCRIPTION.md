@@ -37,3 +37,7 @@ Adds a read-only setup diagnostic command, four-profile inspection and accompany
 ## Version 0.8.0
 
 Connects the read-only inventory report to SQLite, adds path-based catalogue search, and records provisional classifications with source references. Includes sample book, RPG, wargame and media inventory entries. No file reorganisation, full-text search or automatic classification approval.
+
+## Version 0.8.1
+
+A maintenance release covering SQLite schema-v2 reopening, inventory path and size validation, hash preservation across subsequent scans, safer hash file opening and additional regression tests. Adds a Python CI workflow. Live integration is still incomplete; no collection files are modified.
