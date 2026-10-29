@@ -1,6 +1,6 @@
 # Master Librarian Claw
 
-**Current version: 0.7.0 — local setup diagnostics and guided onboarding.**
+**Current version: 0.8.0 — inventory ingestion, metadata search and classification proposals.**
 
 **One librarian, eleven specialist departments, and a fairly healthy suspicion of `final-final-v3.pdf`.**
 
@@ -76,3 +76,23 @@ Run `python3 -m unittest discover -s tests -v` to check the repository. The coor
 ## Local setup diagnostics (v0.7.0)
 
 Run `python3 scripts/setup_doctor.py --profile small` and select `mini`, `small`, `medium` or `advanced` as needed. The command checks operating-system details, Python, SQLite, and whether Git, Ollama and OpenClaw are on your command path. It does **not** install dependencies, test model inference, modify settings or start any services. See `QUICKSTART.md` for first-run guidance. The setup doctor passed three local unit tests; there has not yet been an end-to-end installation test with OpenClaw.
+
+## Catalogue workflows (v0.8.0)
+
+Create a database, scan a test directory and import its inventory:
+
+```sh
+python3 scripts/catalogue.py --db ./state/library.sqlite --init
+python3 scripts/inventory.py ./your-test-folder > ./state/inventory.json
+python3 scripts/ingest.py --db ./state/library.sqlite import ./state/inventory.json
+python3 scripts/ingest.py --db ./state/library.sqlite search "rules"
+python3 scripts/classification_review.py --db ./state/library.sqlite list
+```
+
+Use the file ID returned by search to propose a classification:
+
+```sh
+python3 scripts/classification_review.py --db ./state/library.sqlite propose FILE_ID "Possible tabletop game rules" --source "Local title-page inspection"
+```
+
+The example inventory under `examples/` is illustrative metadata and not a real collection. All classifications remain provisional; the system does not yet approve or reconcile them automatically. Imports change the **local SQLite database**, never source documents. Only complete inventory reports are accepted. Reimports update file observations but do not delete missing records. Search currently matches file paths, not document contents. The full suite still needs a verified clean-checkout run.
