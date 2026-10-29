@@ -70,3 +70,10 @@ Every substantive development stage should update `VERSION`, `README.md`, `DESCR
 - Added no-follow safeguards for opening files during hashing (where supported)
 - Added regression tests and Python CI configuration
 - Outstanding: test the full suite in CI, improve hostile-directory traversal, strengthen concurrent task authorisation, add backup/migration failure simulations and validate installation commands
+
+## 0.8.2 — CI correction
+
+- Repaired first-run catalogue schema history so v2 migrations succeed.
+- Fixed the referral hop-limit test expectation.
+- Confirmed the corrected revision's unit tests on Python 3.10, 3.12 and 3.13 in GitHub Actions.
+- Remaining audit targets: concurrency, complete migration rollback tests, directory race hardening, performance and actual OpenClaw integration.
